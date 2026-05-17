@@ -157,7 +157,25 @@ std::tuple<std::vector<size_t>, std::vector<size_t>, double> Registration::find_
     // Filter the correspondences based on the distance threshold.
     // Return source indices, target indices, and final RMSE.
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    return {};
+    open3d::geometry::KDTreeFlann target_kd_tree(target_);
+    std::vector<size_t> source_indices;
+    std::vector<size_t> target_indices;
+    double mse   = 0.0;
+    size_t count = 0;
+    const int num_src = static_cast<int>(source_for_icp_.points_.size());
+    for (int i = 0; i < num_src; ++i) {
+        const Eigen::Vector3d &src_pt = source_for_icp_.points_[i];
+        std::vector<int>    idx(1);
+        std::vector<double> dist2(1);
+        if (target_kd_tree.SearchKNN(src_pt, 1, idx, dist2) < 1) continue;
+        if (std::sqrt(dist2[0]) > threshold) continue;
+        source_indices.push_back(static_cast<size_t>(i));
+        target_indices.push_back(static_cast<size_t>(idx[0]));
+        mse = mse * count / (count + 1) + dist2[0] / (count + 1);
+        ++count;
+    }
+    double rmse = (count > 0) ? std::sqrt(mse) : std::numeric_limits<double>::infinity();
+    return {source_indices, target_indices, rmse};
 }
 
 Eigen::Matrix4d Registration::get_svd_icp_transformation(std::vector<size_t> source_indices, std::vector<size_t> target_indices) {
@@ -246,7 +264,6 @@ void Registration::execute_descriptor_registration() {
     transformation_ = result.transformation_;
     std::cout << "[Descriptor] RANSAC fitness: " << result.fitness_ << "  inlier RMSE: " << result.inlier_rmse_ << std::endl;
 
-    
 }
 
 void Registration::set_transformation(Eigen::Matrix4d init_transformation) {
