@@ -1,0 +1,286 @@
+#include "Registration.h"
+
+#include <algorithm>
+#include <cmath>
+#include <functional>
+#include <limits>
+
+struct PointDistance {
+    ////////////////////////////////////////////////////////////////////////////////////////////////////
+    // This class should include an auto-differentiable cost function.
+    // To rotate a point given an axis-angle rotation, use
+    // the Ceres function:
+    // AngleAxisRotatePoint(...) (see ceres/rotation.h)
+    // Similarly to the Bundle Adjustment case initialize the struct variables with the source and the target point.
+    // You have to optimize only the 6-dimensional array (rx, ry, rz, tx ,ty, tz).
+    // WARNING: When dealing with the AutoDiffCostFunction template parameters,
+    // pay attention to the order of the template parameters
+    ////////////////////////////////////////////////////////////////////////////////////////////////////
+    PointDistance(const Eigen::Vector3d &source_point, const Eigen::Vector3d &target_point) {
+        source_[0] = source_point(0);
+        source_[1] = source_point(1);
+        source_[2] = source_point(2);
+        target_[0] = target_point(0);
+        target_[1] = target_point(1);
+        target_[2] = target_point(2);
+    }
+
+    template <typename T>
+    bool operator()(const T *const transformation, T *residuals) const {
+        T source_point[3] = {T(source_[0]), T(source_[1]), T(source_[2])};
+        T rotated_point[3];
+        ceres::AngleAxisRotatePoint(transformation, source_point, rotated_point);
+
+        residuals[0] = rotated_point[0] + transformation[3] - T(target_[0]);
+        residuals[1] = rotated_point[1] + transformation[4] - T(target_[1]);
+        residuals[2] = rotated_point[2] + transformation[5] - T(target_[2]);
+        return true;
+    }
+
+    static ceres::CostFunction *Create(const Eigen::Vector3d &source_point, const Eigen::Vector3d &target_point) {
+        return new ceres::AutoDiffCostFunction<PointDistance, 3, 6>(
+            new PointDistance(source_point, target_point));
+    }
+
+    double source_[3];
+    double target_[3];
+};
+
+Registration::Registration(std::string cloud_source_filename, std::string cloud_target_filename) {
+    open3d::io::ReadPointCloud(cloud_source_filename, source_);
+    open3d::io::ReadPointCloud(cloud_target_filename, target_);
+    Eigen::Vector3d gray_color;
+    source_for_icp_ = source_;
+}
+
+Registration::Registration(open3d::geometry::PointCloud cloud_source, open3d::geometry::PointCloud cloud_target) {
+    source_ = cloud_source;
+    target_ = cloud_target;
+    source_for_icp_ = source_;
+}
+
+void Registration::draw_registration_result() {
+    // clone input
+    open3d::geometry::PointCloud source_clone = source_;
+    open3d::geometry::PointCloud target_clone = target_;
+
+    // different color
+    Eigen::Vector3d color_s;
+    Eigen::Vector3d color_t;
+    color_s << 1, 0.706, 0;
+    color_t << 0, 0.651, 0.929;
+
+    target_clone.PaintUniformColor(color_t);
+    source_clone.PaintUniformColor(color_s);
+    source_clone.Transform(transformation_);
+
+    auto src_pointer = std::make_shared<open3d::geometry::PointCloud>(source_clone);
+    auto target_pointer = std::make_shared<open3d::geometry::PointCloud>(target_clone);
+    open3d::visualization::DrawGeometries({src_pointer, target_pointer});
+    return;
+}
+
+ICPResult Registration::execute_icp_registration(double threshold, int max_iteration, double relative_rmse, std::string mode) {
+    std::cout << "Starting ICP" << std::endl;
+    ICPResult result;
+
+    if (mode == "svd" or mode == "lm") {
+        auto start = std::chrono::steady_clock::now();
+        source_for_icp_.Transform(transformation_);
+        double prev_rmse = std::numeric_limits<double>::infinity();
+        int it;
+        for (it = 0; it < max_iteration; ++it) {
+            std::tuple<std::vector<size_t>, std::vector<size_t>, double> res = find_closest_point(threshold);
+            auto source_indices = std::get<0>(res);
+            auto target_indices = std::get<1>(res);
+            double rmse = std::get<2>(res);
+            std::cout << '\r' << "ICP Inlier RMSE: " << rmse << std::flush;
+
+            if (prev_rmse - rmse < relative_rmse)
+                break;
+            prev_rmse = rmse;
+            Eigen::Matrix4d transformation;
+            if (mode == "svd")
+                transformation = get_svd_icp_transformation(source_indices, target_indices);
+            else if (mode == "lm")
+                transformation = get_lm_icp_transformation(source_indices, target_indices);
+            source_for_icp_.Transform(transformation);
+            transformation_ = transformation_ * transformation;
+        }
+        std::cout << std::endl;
+        auto end = std::chrono::steady_clock::now();
+        auto time_ms = std::chrono::duration<double, std::milli>(end - start).count();
+        double final_rmse = compute_rmse();
+        result = {final_rmse, time_ms, it};
+    } else if (mode.rfind("o3d") == 0) { // if open3d ICP method is selected
+        open3d::utility::SetVerbosityLevel(open3d::utility::VerbosityLevel::Debug); // Set to Debug to get detailed information about the ICP process
+        std::shared_ptr<open3d::pipelines::registration::TransformationEstimation> transformation_estimation;
+        if (mode == "o3d-p2point") {
+            transformation_estimation = std::make_shared<open3d::pipelines::registration::TransformationEstimationPointToPoint>();
+        } else if (mode == "o3d-p2plane") {
+            target_.EstimateNormals(open3d::geometry::KDTreeSearchParamHybrid(3, 30)); // hardcoded parameters for normal estimation, you can change them if you want
+            target_.NormalizeNormals();
+            transformation_estimation = std::make_shared<open3d::pipelines::registration::TransformationEstimationPointToPlane>();
+        } else if (mode == "o3d-gen") {
+            transformation_estimation = std::make_shared<open3d::pipelines::registration::TransformationEstimationForGeneralizedICP>();
+        } else {
+            std::cerr << "Unknown Open3D ICP mode: " << mode << std::endl;
+            return {0.0, 0.0, 0};
+        }
+        auto start = std::chrono::steady_clock::now();
+        auto reg_p2p = open3d::pipelines::registration::RegistrationICP(
+            source_for_icp_,
+            target_,
+            threshold,
+            transformation_,
+            *transformation_estimation,
+            open3d::pipelines::registration::ICPConvergenceCriteria(relative_rmse = relative_rmse, max_iteration = max_iteration));
+        transformation_ = reg_p2p.transformation_;
+        auto end = std::chrono::steady_clock::now();
+        auto time_ms = std::chrono::duration<double, std::milli>(end - start).count();
+        double final_rmse = compute_rmse();
+        open3d::utility::SetVerbosityLevel(open3d::utility::VerbosityLevel::Info); // Reset verbosity level to default
+        target_.normals_.clear(); // Clear normals if they were estimated for point-to-plane ICP to avoid affecting subsequent registrations
+        result = {final_rmse, time_ms, 0}; // NB: unfortunately Open3D's RegistrationICP does not provide the number of iterations, so we set it to 0, you can watch the debug output to see how many iterations it performed
+    } else {
+        std::cerr << "Unknown ICP mode: " << mode << std::endl;
+        result = {0.0, 0.0, 0};
+    }
+
+    source_for_icp_ = source_;
+    return result;
+}
+
+std::tuple<std::vector<size_t>, std::vector<size_t>, double> Registration::find_closest_point(double threshold) {
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    // Use KDTreeFlann to search the closest target point for each source point.
+    // Filter the correspondences based on the distance threshold.
+    // Return source indices, target indices, and final RMSE.
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    return {};
+}
+
+Eigen::Matrix4d Registration::get_svd_icp_transformation(std::vector<size_t> source_indices, std::vector<size_t> target_indices) {
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    // 1. Compute centroids of source and target points.
+    // 2. Subtract centroids and construct matrix H.
+    // 3. Use Eigen::JacobiSVD to compute rotation.
+    // 4. Handle special reflection case if det(R) < 0.
+    // 5. Compute translation t and build 4x4 matrix.
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    return Eigen::Matrix4d::Identity();
+}
+
+Eigen::Matrix4d Registration::get_lm_icp_transformation(std::vector<size_t> source_indices, std::vector<size_t> target_indices) {
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    // 1. Initialize parameter vector.
+    // 2. Create ceres::Problem.
+    // 3. For each correspondence:
+    //    - extract source/target points
+    //    - add PointDistance residual block
+    // 4. Call ceres::Solve(...).
+    // 5. Convert axis-angle -> rotation matrix.
+    // 6. Extract translation.
+    // 7. Return 4x4 transformation matrix.
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    return Eigen::Matrix4d::Identity();
+}
+
+void Registration::execute_descriptor_registration() {
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    // Implement a registration method based on feature descriptors.
+    // - Preprocess the point clouds using Open3D functions (e.g., voxel downsampling).
+    // - Detect keypoints and compute descriptors (e.g., FPFH) in both source and target clouds using Open3D methods.
+    // - Match descriptors and estimate initial correspondences.
+    // - Use Open3D’s RANSAC-based registration methods to reject outliers
+    //   and estimate an initial rigid transformation.
+    // - Do NOT use any part of ICP here; this must remain a pure
+    //   descriptor-based initial alignment.
+    // - Store the estimated transformation matrix in `transformation_`.
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    
+}
+
+void Registration::set_transformation(Eigen::Matrix4d init_transformation) {
+    transformation_ = init_transformation;
+}
+
+Eigen::Matrix4d Registration::get_transformation() {
+    return transformation_;
+}
+
+double Registration::compute_rmse() {
+    open3d::geometry::KDTreeFlann target_kd_tree(target_);
+    open3d::geometry::PointCloud source_clone = source_;
+    source_clone.Transform(transformation_);
+    int num_source_points = source_clone.points_.size();
+    Eigen::Vector3d source_point;
+    std::vector<int> idx(1);
+    std::vector<double> dist2(1);
+    double mse = 0.0;
+    for (size_t i = 0; i < num_source_points; ++i) {
+        source_point = source_clone.points_[i];
+        target_kd_tree.SearchKNN(source_point, 1, idx, dist2);
+        mse = mse * i / (i + 1) + dist2[0] / (i + 1);
+    }
+    return sqrt(mse);
+}
+
+void Registration::write_tranformation_matrix(std::string filename) {
+    std::ofstream outfile(filename);
+    if (outfile.is_open()) {
+        outfile << transformation_;
+        outfile.close();
+    }
+}
+
+void Registration::save_merged_cloud(std::string filename) {
+    // clone input
+    open3d::geometry::PointCloud source_clone = source_;
+    open3d::geometry::PointCloud target_clone = target_;
+
+    source_clone.Transform(transformation_);
+    open3d::geometry::PointCloud merged = target_clone + source_clone;
+    open3d::io::WritePointCloud(filename, merged);
+}
+
+Eigen::Matrix4d Registration::get_noisy_transformation(double rot_noise_deg_std, double trans_noise_mm) {
+    Eigen::Matrix4d T = get_transformation();
+
+    static thread_local std::mt19937 gen(std::random_device{}());
+
+    std::normal_distribution<double> rot_dist(0.0, rot_noise_deg_std);
+
+    // centroid
+    Eigen::Vector3d center_local = source_.GetCenter();
+
+    Eigen::Matrix3d R = T.block<3, 3>(0, 0);
+    Eigen::Vector3d t = T.block<3, 1>(0, 3);
+
+    Eigen::Vector3d noise_rad( // rotation noise in radians
+        rot_dist(gen) * M_PI / 180.0,
+        rot_dist(gen) * M_PI / 180.0,
+        rot_dist(gen) * M_PI / 180.0);
+
+    double angle = noise_rad.norm();
+    Eigen::Matrix3d R_noise = Eigen::Matrix3d::Identity();
+    if (angle > 1e-12) {
+        Eigen::Vector3d axis = noise_rad / angle;
+        R_noise = Eigen::AngleAxisd(angle, axis).toRotationMatrix();
+    }
+
+    Eigen::Matrix3d R_new = R * R_noise;
+
+    Eigen::Vector3d dir = Eigen::Vector3d::Random().normalized();
+
+    // Point clouds are stored in millimeters, so translation noise is applied directly in mm.
+    Eigen::Vector3d t_noise = trans_noise_mm * dir;
+
+    Eigen::Vector3d t_new = t + R * (Eigen::Matrix3d::Identity() - R_noise) * center_local + R * t_noise;
+
+    Eigen::Matrix4d T_new = Eigen::Matrix4d::Identity();
+    T_new.block<3, 3>(0, 0) = R_new;
+    T_new.block<3, 1>(0, 3) = t_new;
+
+    return T_new;
+}
