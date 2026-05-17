@@ -232,7 +232,37 @@ Eigen::Matrix4d Registration::get_lm_icp_transformation(std::vector<size_t> sour
     // 6. Extract translation.
     // 7. Return 4x4 transformation matrix.
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    return Eigen::Matrix4d::Identity();
+    
+    const size_t n = source_indices.size();
+    if (n == 0) return Eigen::Matrix4d::Identity();
+
+    double params[6] = {0.0, 0.0, 0.0, 0.0, 0.0, 0.0};
+
+    ceres::Problem problem;
+    for (size_t k = 0; k < n; ++k) {
+        const Eigen::Vector3d &src_pt = source_for_icp_.points_[source_indices[k]];
+        const Eigen::Vector3d &tgt_pt = target_.points_[target_indices[k]];
+        problem.AddResidualBlock(PointDistance::Create(src_pt, tgt_pt), nullptr, params);
+    }
+
+    ceres::Solver::Options options;
+    options.linear_solver_type = ceres::DENSE_QR;
+    options.minimizer_progress_to_stdout = false;
+    options.max_num_iterations = 50;
+    ceres::Solver::Summary summary;
+    ceres::Solve(options, &problem, &summary);
+
+    Eigen::Vector3d axis_angle(params[0], params[1], params[2]);
+    double angle = axis_angle.norm();
+    Eigen::Matrix3d R = Eigen::Matrix3d::Identity();
+    if (angle > 1e-12)
+        R = Eigen::AngleAxisd(angle, axis_angle / angle).toRotationMatrix();
+
+    Eigen::Vector3d t(params[3], params[4], params[5]);
+    Eigen::Matrix4d T = Eigen::Matrix4d::Identity();
+    T.block<3, 3>(0, 0) = R;
+    T.block<3, 1>(0, 3) = t;
+    return T;
 }
 
 void Registration::execute_descriptor_registration() {
