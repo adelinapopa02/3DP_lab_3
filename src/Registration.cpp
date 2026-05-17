@@ -160,12 +160,12 @@ std::tuple<std::vector<size_t>, std::vector<size_t>, double> Registration::find_
     open3d::geometry::KDTreeFlann target_kd_tree(target_);
     std::vector<size_t> source_indices;
     std::vector<size_t> target_indices;
-    double mse   = 0.0;
+    double mse = 0.0;
     size_t count = 0;
     const int num_src = static_cast<int>(source_for_icp_.points_.size());
     for (int i = 0; i < num_src; ++i) {
         const Eigen::Vector3d &src_pt = source_for_icp_.points_[i];
-        std::vector<int>    idx(1);
+        std::vector<int> idx(1);
         std::vector<double> dist2(1);
         if (target_kd_tree.SearchKNN(src_pt, 1, idx, dist2) < 1) continue;
         if (std::sqrt(dist2[0]) > threshold) continue;
@@ -186,7 +186,38 @@ Eigen::Matrix4d Registration::get_svd_icp_transformation(std::vector<size_t> sou
     // 4. Handle special reflection case if det(R) < 0.
     // 5. Compute translation t and build 4x4 matrix.
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    return Eigen::Matrix4d::Identity();
+
+    const size_t n = source_indices.size();
+    if (n == 0) return Eigen::Matrix4d::Identity();
+
+    Eigen::Vector3d src_centroid = Eigen::Vector3d::Zero();
+    Eigen::Vector3d tgt_centroid = Eigen::Vector3d::Zero();
+    for (size_t k = 0; k < n; ++k) {
+        src_centroid += source_for_icp_.points_[source_indices[k]];
+        tgt_centroid += target_.points_[target_indices[k]];
+    }
+    src_centroid /= static_cast<double>(n);
+    tgt_centroid /= static_cast<double>(n);
+
+    Eigen::MatrixXd Src(n, 3), Tgt(n, 3);
+    for (size_t k = 0; k < n; ++k) {
+        Src.row(k) = (source_for_icp_.points_[source_indices[k]] - src_centroid).transpose();
+        Tgt.row(k) = (target_.points_[target_indices[k]] - tgt_centroid).transpose();
+    }
+
+    Eigen::MatrixXd W = Src.transpose() * Tgt;
+    Eigen::JacobiSVD<Eigen::MatrixXd> svd(W, Eigen::ComputeFullU | Eigen::ComputeFullV);
+    Eigen::Matrix3d U = svd.matrixU();
+    Eigen::Matrix3d V = svd.matrixV();
+
+    Eigen::Matrix3d R = V * U.transpose();
+    if (R.determinant() < 0.0) { V.col(2) *= -1.0; R = V * U.transpose(); }
+
+    Eigen::Vector3d t = tgt_centroid - R * src_centroid;
+    Eigen::Matrix4d T = Eigen::Matrix4d::Identity();
+    T.block<3, 3>(0, 0) = R;
+    T.block<3, 1>(0, 3) = t;
+    return T;
 }
 
 Eigen::Matrix4d Registration::get_lm_icp_transformation(std::vector<size_t> source_indices, std::vector<size_t> target_indices) {
