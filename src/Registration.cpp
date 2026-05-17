@@ -198,6 +198,54 @@ void Registration::execute_descriptor_registration() {
     //   descriptor-based initial alignment.
     // - Store the estimated transformation matrix in `transformation_`.
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+    const double voxel_size = 5.0;  
+    const double normal_radius = voxel_size * 2.0;
+    const int normal_max_nn = 30;
+    const double fpfh_radius = voxel_size * 5.0;
+    const int fpfh_max_nn = 100;
+    const double ransac_dist_thresh = voxel_size * 1.5;
+    const int ransac_n = 3;
+    const int ransac_max_iter = 4000000;
+    const double ransac_confidence = 0.999;
+ 
+    // Downsample
+    auto src_down = source_.VoxelDownSample(voxel_size);
+    auto tgt_down = target_.VoxelDownSample(voxel_size);
+ 
+    // Estimate normals
+    src_down->EstimateNormals(open3d::geometry::KDTreeSearchParamHybrid(normal_radius, normal_max_nn));
+    src_down->NormalizeNormals();
+    tgt_down->EstimateNormals(open3d::geometry::KDTreeSearchParamHybrid(normal_radius, normal_max_nn));
+    tgt_down->NormalizeNormals();
+ 
+    // Compute FPFH
+    auto src_fpfh = open3d::pipelines::registration::ComputeFPFHFeature(*src_down, open3d::geometry::KDTreeSearchParamHybrid(fpfh_radius, fpfh_max_nn));
+    auto tgt_fpfh = open3d::pipelines::registration::ComputeFPFHFeature(*tgt_down, open3d::geometry::KDTreeSearchParamHybrid(fpfh_radius, fpfh_max_nn));
+ 
+    // Correspondence checkers
+    auto edge_checker = open3d::pipelines::registration::CorrespondenceCheckerBasedOnEdgeLength(0.9);
+    auto dist_checker = open3d::pipelines::registration::CorrespondenceCheckerBasedOnDistance(ransac_dist_thresh);
+ 
+    std::vector<std::reference_wrapper<const open3d::pipelines::registration::CorrespondenceChecker>> checkers;
+    checkers.push_back(edge_checker);
+    checkers.push_back(dist_checker);
+ 
+    // RANSAC
+    auto result =
+        open3d::pipelines::registration::RegistrationRANSACBasedOnFeatureMatching(
+            *src_down, *tgt_down,
+            *src_fpfh, *tgt_fpfh,
+            /*mutual_filter=*/true,
+            ransac_dist_thresh,
+            open3d::pipelines::registration::TransformationEstimationPointToPoint(false),
+            ransac_n,
+            checkers,
+            open3d::pipelines::registration::RANSACConvergenceCriteria(ransac_max_iter, ransac_confidence));
+ 
+    transformation_ = result.transformation_;
+    std::cout << "[Descriptor] RANSAC fitness: " << result.fitness_ << "  inlier RMSE: " << result.inlier_rmse_ << std::endl;
+
     
 }
 

@@ -1,0 +1,33 @@
+# --- CMake and Build Artifacts ---
+build/
+bin/
+lib/
+*.o
+*.a
+*.so
+*.out
+CMakeCache.txt
+CMakeFiles/
+cmake_install.cmake
+Makefile
+
+# --- IDE Specific (VS Code / Overleaf / Editors) ---
+.vscode/
+.idea/
+*.swp
+*~
+.DS_Store
+
+# --- Conda & Python ---
+.conda/
+env/
+venv/
+*.pyc
+__pycache__/
+
+# --- Data & Results (Assignment specific) ---
+# It's usually better to keep your raw datasets and registered .ply files 
+# out of git if they are large.
+*.ply
+*.pcd
+datasets/
