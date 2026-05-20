@@ -290,7 +290,7 @@ void Registration::execute_descriptor_registration() {
     const int ransac_max_iter = 10000000;
     const double ransac_confidence = 0.999;
 
-    std::cout << "[Descriptor]  voxel_size: " << voxel_size << "  BB diagonal: " << this->diagonal_ << std::endl;
+    std::cout << "[Descriptor] voxel_size: " << voxel_size << "  BB diagonal: " << this->diagonal_ << std::endl;
  
     // Downsample
     auto src_down = source_.VoxelDownSample(voxel_size);

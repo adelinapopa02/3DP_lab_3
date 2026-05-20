@@ -12,10 +12,10 @@ int main(int argc, char *argv[]) {
     std::string mode = argv[3];
 
     Registration registration(argv[1], argv[2]);
-    registration.draw_registration_result(); // (1) Source and Target in original coordinates
+    // registration.draw_registration_result(); // (1) Source and Target in original coordinates
 
     registration.execute_descriptor_registration();
-    registration.draw_registration_result(); // (2) Global Registration state
+    // registration.draw_registration_result(); // (2) Global Registration state
     std::cout << "Initial RMSE: " << registration.compute_rmse() << std::endl;
 
     if (mode != "all") {
@@ -29,7 +29,7 @@ int main(int argc, char *argv[]) {
         double threshold = std::min(registration.compute_rmse() * 2.0, diag * 0.05);
         std::cout << "ICP threshold: " << threshold << std::endl;
         int max_iterations = 100;
-        double relative_rmse = 1e-6;
+        double relative_rmse = 1e-4;
 
         ICPResult result = registration.execute_icp_registration(threshold, max_iterations, relative_rmse, mode);
 
@@ -60,7 +60,7 @@ int main(int argc, char *argv[]) {
 
             Eigen::Matrix4d noisy_transformation = registration.get_noisy_transformation(rot_noise, trans_noise); // Generate a new noisy transformation for each noise level
             registration.set_transformation(noisy_transformation);
-            // registration.draw_registration_result();
+            // registration.draw_registration_result(); // (3) Initial Noisy state
             const double initial_noisy_rmse = registration.compute_rmse();
             std::cout << "Initial noisy RMSE: " << initial_noisy_rmse << std::endl;
 
@@ -72,13 +72,15 @@ int main(int argc, char *argv[]) {
                 // Tune these parameters
                 // Can the noise level or initial rmse be good priors?
                 /////////////////////////////////////////////////////////
-                double threshold = initial_noisy_rmse * 1.5;
+                double diag = registration.get_diagonal();
+                double threshold = std::min(registration.compute_rmse() * 2.0, diag * 0.05);
+                std::cout << "ICP threshold: " << threshold << std::endl;
                 int max_iterations = 100;
-                double relative_rmse = 1e-6;
+                double relative_rmse = 1e-4;
 
                 ICPResult result = registration.execute_icp_registration(threshold, max_iterations, relative_rmse, method);
 
-                // registration.draw_registration_result(); 
+                // registration.draw_registration_result(); // (4) Local Refinament state
                 results.push_back({rot_noise, trans_noise, method, initial_noisy_rmse, result});
 
                 std::cout << "Final RMSE: " << result.rmse << std::endl;
