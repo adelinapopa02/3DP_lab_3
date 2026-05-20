@@ -12,26 +12,28 @@ int main(int argc, char *argv[]) {
     std::string mode = argv[3];
 
     Registration registration(argv[1], argv[2]);
-    registration.draw_registration_result();
+    registration.draw_registration_result(); // (1) Source and Target in original coordinates
 
     registration.execute_descriptor_registration();
-    registration.draw_registration_result();
+    registration.draw_registration_result(); // (2) Global Registration state
     std::cout << "Initial RMSE: " << registration.compute_rmse() << std::endl;
 
     if (mode != "all") {
         // uncomment to test with a single noise level
-        // Eigen::Matrix4d noisy_transformation = registration.get_noisy_transformation(3.0, 3.0);
-        // registration.set_transformation(noisy_transformation);
-        // registration.draw_registration_result();
-        // std::cout << "Initial noisy RMSE: " << registration.compute_rmse() << std::endl;
+        Eigen::Matrix4d noisy_transformation = registration.get_noisy_transformation(10.0, 5.0);
+        registration.set_transformation(noisy_transformation);
+        registration.draw_registration_result(); // (3) Initial Noisy state
+        std::cout << "Initial noisy RMSE: " << registration.compute_rmse() << std::endl;
 
-        double threshold = 0.8;
+        double diag = registration.get_diagonal();
+        double threshold = std::min(registration.compute_rmse() * 2.0, diag * 0.05);
+        std::cout << "ICP threshold: " << threshold << std::endl;
         int max_iterations = 100;
         double relative_rmse = 1e-6;
 
         ICPResult result = registration.execute_icp_registration(threshold, max_iterations, relative_rmse, mode);
 
-        registration.draw_registration_result();
+        registration.draw_registration_result(); // (4) Local Refinament state
 
         std::cout << "Final RMSE: " << result.rmse << std::endl;
         std::cout << "Time (ms): " << result.time_ms << std::endl;
@@ -70,13 +72,13 @@ int main(int argc, char *argv[]) {
                 // Tune these parameters
                 // Can the noise level or initial rmse be good priors?
                 /////////////////////////////////////////////////////////
-                double threshold = 0.02;
+                double threshold = initial_noisy_rmse * 1.5;
                 int max_iterations = 100;
                 double relative_rmse = 1e-6;
 
                 ICPResult result = registration.execute_icp_registration(threshold, max_iterations, relative_rmse, method);
 
-                // registration.draw_registration_result();
+                // registration.draw_registration_result(); 
                 results.push_back({rot_noise, trans_noise, method, initial_noisy_rmse, result});
 
                 std::cout << "Final RMSE: " << result.rmse << std::endl;

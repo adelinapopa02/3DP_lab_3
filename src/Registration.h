@@ -34,6 +34,7 @@ public:
     void save_merged_cloud(std::string filename);
     double compute_rmse();
     Eigen::Matrix4d get_noisy_transformation(double rot_noise_deg_std, double trans_noise_mm);
+    double get_diagonal() const { return diagonal_; }
 
 private:
     std::tuple<std::vector<size_t>, std::vector<size_t>, double> find_closest_point(double threshold);
@@ -43,6 +44,7 @@ private:
     open3d::geometry::PointCloud source_for_icp_;
     open3d::geometry::PointCloud target_;
     Eigen::Matrix4d transformation_ = Eigen::Matrix4d::Identity();
+    double diagonal_ = 0.0;
 };
 
 #endif // MVS_REG_REGISTRATION_H

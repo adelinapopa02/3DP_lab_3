@@ -105,7 +105,7 @@ ICPResult Registration::execute_icp_registration(double threshold, int max_itera
             else if (mode == "lm")
                 transformation = get_lm_icp_transformation(source_indices, target_indices);
             source_for_icp_.Transform(transformation);
-            transformation_ = transformation_ * transformation;
+            transformation_ = transformation * transformation_;
         }
         std::cout << std::endl;
         auto end = std::chrono::steady_clock::now();
@@ -242,7 +242,7 @@ Eigen::Matrix4d Registration::get_lm_icp_transformation(std::vector<size_t> sour
     for (size_t k = 0; k < n; ++k) {
         const Eigen::Vector3d &src_pt = source_for_icp_.points_[source_indices[k]];
         const Eigen::Vector3d &tgt_pt = target_.points_[target_indices[k]];
-        problem.AddResidualBlock(PointDistance::Create(src_pt, tgt_pt), nullptr, params);
+        problem.AddResidualBlock(PointDistance::Create(src_pt, tgt_pt), new ceres::HuberLoss(1.0), params);
     }
 
     ceres::Solver::Options options;
@@ -278,15 +278,19 @@ void Registration::execute_descriptor_registration() {
     // - Store the estimated transformation matrix in `transformation_`.
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-    const double voxel_size = 5.0;  
+    this->diagonal_ = (source_.GetMaxBound() - source_.GetMinBound()).norm();
+
+    const double voxel_size = this->diagonal_ * 0.02;  
     const double normal_radius = voxel_size * 2.0;
     const int normal_max_nn = 30;
     const double fpfh_radius = voxel_size * 5.0;
     const int fpfh_max_nn = 100;
     const double ransac_dist_thresh = voxel_size * 1.5;
     const int ransac_n = 3;
-    const int ransac_max_iter = 4000000;
+    const int ransac_max_iter = 10000000;
     const double ransac_confidence = 0.999;
+
+    std::cout << "[Descriptor]  voxel_size: " << voxel_size << "  BB diagonal: " << this->diagonal_ << std::endl;
  
     // Downsample
     auto src_down = source_.VoxelDownSample(voxel_size);
@@ -315,7 +319,7 @@ void Registration::execute_descriptor_registration() {
         open3d::pipelines::registration::RegistrationRANSACBasedOnFeatureMatching(
             *src_down, *tgt_down,
             *src_fpfh, *tgt_fpfh,
-            /*mutual_filter=*/true,
+            /*mutual_filter=*/false,
             ransac_dist_thresh,
             open3d::pipelines::registration::TransformationEstimationPointToPoint(false),
             ransac_n,
