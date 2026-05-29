@@ -1,0 +1,822 @@
+TERMINAL RESULTS
+
+bunny 0-0
+
+adelina@adelina-System-Product-Name:~/Desktop/3D_Data/3DP_lab_3/build$ ./registration ../data/bunny/source.ply ../data/bunny/target.ply svd
+[Descriptor] voxel_size: 1.99981  BB diagonal: 99.9907
+[Descriptor] RANSAC fitness: 1  inlier RMSE: 0.739459
+Initial RMSE: 0.379552
+Initial noisy RMSE: 0.379552
+ICP threshold: 0.759103
+Starting ICP
+ICP Inlier RMSE: 0.212436
+Final RMSE: 0.2124
+Time (ms): 688.035
+Iterations: 9
+
+adelina@adelina-System-Product-Name:~/Desktop/3D_Data/3DP_lab_3/build$ ./registration ../data/bunny/source.ply ../data/bunny/target.ply lm
+[Descriptor] voxel_size: 1.99981  BB diagonal: 99.9907
+[Descriptor] RANSAC fitness: 1  inlier RMSE: 0.753505
+Initial RMSE: 0.400605
+Initial noisy RMSE: 0.400605
+ICP threshold: 0.80121
+Starting ICP
+ICP Inlier RMSE: 0.212409
+Final RMSE: 0.212409
+Time (ms): 10840.6
+Iterations: 6
+
+adelina@adelina-System-Product-Name:~/Desktop/3D_Data/3DP_lab_3/build$ ./registration ../data/bunny/source.ply ../data/bunny/target.ply o3d-p2point
+[Descriptor] voxel_size: 1.99981  BB diagonal: 99.9907
+[Descriptor] RANSAC fitness: 1  inlier RMSE: 0.77512
+Initial RMSE: 0.419463
+Initial noisy RMSE: 0.419463
+ICP threshold: 0.838925
+Starting ICP
+[Open3D DEBUG] ICP Iteration #0: Fitness 0.9833, RMSE 0.4052
+[Open3D DEBUG] ICP Iteration #1: Fitness 0.9971, RMSE 0.3573
+[Open3D DEBUG] ICP Iteration #2: Fitness 0.9998, RMSE 0.3227
+[Open3D DEBUG] ICP Iteration #3: Fitness 1.0000, RMSE 0.2973
+[Open3D DEBUG] ICP Iteration #4: Fitness 1.0000, RMSE 0.2748
+[Open3D DEBUG] ICP Iteration #5: Fitness 1.0000, RMSE 0.2523
+[Open3D DEBUG] ICP Iteration #6: Fitness 1.0000, RMSE 0.2313
+[Open3D DEBUG] ICP Iteration #7: Fitness 1.0000, RMSE 0.2171
+[Open3D DEBUG] ICP Iteration #8: Fitness 1.0000, RMSE 0.2130
+[Open3D DEBUG] ICP Iteration #9: Fitness 1.0000, RMSE 0.2125
+Final RMSE: 0.212399
+Time (ms): 52.3355
+Iterations: 0
+
+adelina@adelina-System-Product-Name:~/Desktop/3D_Data/3DP_lab_3/build$ ./registration ../data/bunny/source.ply ../data/bunny/target.ply o3d-p2plane
+[Descriptor] voxel_size: 1.99981  BB diagonal: 99.9907
+[Descriptor] RANSAC fitness: 1  inlier RMSE: 0.753675
+Initial RMSE: 0.387251
+Initial noisy RMSE: 0.387251
+ICP threshold: 0.774502
+Starting ICP
+[Open3D DEBUG] ICP Iteration #0: Fitness 0.9861, RMSE 0.3769
+[Open3D DEBUG] Residual : 9.41e-02 (# of elements : 32499)
+[Open3D DEBUG] ICP Iteration #1: Fitness 1.0000, RMSE 0.2134
+[Open3D DEBUG] Residual : 1.64e-02 (# of elements : 32957)
+[Open3D DEBUG] ICP Iteration #2: Fitness 1.0000, RMSE 0.2124
+[Open3D DEBUG] Residual : 1.63e-02 (# of elements : 32957)
+Final RMSE: 0.212398
+Time (ms): 24.7612
+Iterations: 0
+
+adelina@adelina-System-Product-Name:~/Desktop/3D_Data/3DP_lab_3/build$ ./registration ../data/bunny/source.ply ../data/bunny/target.ply o3d-gen
+[Descriptor] voxel_size: 1.99981  BB diagonal: 99.9907
+[Descriptor] RANSAC fitness: 1  inlier RMSE: 0.71039
+Initial RMSE: 0.488113
+Initial noisy RMSE: 0.488113
+ICP threshold: 0.976226
+Starting ICP
+[Open3D DEBUG] GeneralizedICP: Computing covariances from points.
+[Open3D DEBUG] GeneralizedICP: Computing covariances from points.
+[Open3D DEBUG] ICP Iteration #0: Fitness 0.9544, RMSE 0.4247
+[Open3D DEBUG] Residual : 2.03e+01 (# of elements : 31454)
+[Open3D DEBUG] ICP Iteration #1: Fitness 1.0000, RMSE 0.2267
+[Open3D DEBUG] Residual : 4.38e+00 (# of elements : 32957)
+[Open3D DEBUG] ICP Iteration #2: Fitness 1.0000, RMSE 0.2124
+[Open3D DEBUG] Residual : 3.97e+00 (# of elements : 32957)
+Final RMSE: 0.212415
+Time (ms): 88.0762
+Iterations: 0
+______________________________________________________________________________________________________________________________________________________
+
+bunny 10-5
+
+adelina@adelina-System-Product-Name:~/Desktop/3D_Data/3DP_lab_3/build$ ./registration ../data/bunny/source.ply ../data/bunny/target.ply svd
+[Descriptor] voxel_size: 1.99981  BB diagonal: 99.9907
+[Descriptor] RANSAC fitness: 1  inlier RMSE: 0.761315
+Initial RMSE: 0.459003
+Initial noisy RMSE: 3.14993
+ICP threshold: 4.99954
+Starting ICP
+ICP Inlier RMSE: 0.212408
+Final RMSE: 0.212408
+Time (ms): 1836.81
+Iterations: 24
+
+adelina@adelina-System-Product-Name:~/Desktop/3D_Data/3DP_lab_3/build$ ./registration ../data/bunny/source.ply ../data/bunny/target.ply lm
+[Descriptor] voxel_size: 1.99981  BB diagonal: 99.9907
+[Descriptor] RANSAC fitness: 1  inlier RMSE: 0.714673
+Initial RMSE: 0.282765
+Initial noisy RMSE: 3.14569
+ICP threshold: 4.99954
+Starting ICP
+ICP Inlier RMSE: 0.212405
+Final RMSE: 0.212405
+Time (ms): 82429
+Iterations: 23
+
+adelina@adelina-System-Product-Name:~/Desktop/3D_Data/3DP_lab_3/build$ ./registration ../data/bunny/source.ply ../data/bunny/target.ply o3d-p2point
+[Descriptor] voxel_size: 1.99981  BB diagonal: 99.9907
+[Descriptor] RANSAC fitness: 1  inlier RMSE: 0.744481
+Initial RMSE: 0.340115
+Initial noisy RMSE: 2.82655
+ICP threshold: 4.99954
+Starting ICP
+[Open3D DEBUG] ICP Iteration #0: Fitness 0.9558, RMSE 2.6345
+[Open3D DEBUG] ICP Iteration #1: Fitness 0.9954, RMSE 2.2222
+[Open3D DEBUG] ICP Iteration #2: Fitness 0.9999, RMSE 1.7914
+[Open3D DEBUG] ICP Iteration #3: Fitness 1.0000, RMSE 1.4580
+[Open3D DEBUG] ICP Iteration #4: Fitness 1.0000, RMSE 1.2012
+[Open3D DEBUG] ICP Iteration #5: Fitness 1.0000, RMSE 0.9947
+[Open3D DEBUG] ICP Iteration #6: Fitness 1.0000, RMSE 0.8245
+[Open3D DEBUG] ICP Iteration #7: Fitness 1.0000, RMSE 0.6860
+[Open3D DEBUG] ICP Iteration #8: Fitness 1.0000, RMSE 0.5741
+[Open3D DEBUG] ICP Iteration #9: Fitness 1.0000, RMSE 0.4853
+[Open3D DEBUG] ICP Iteration #10: Fitness 1.0000, RMSE 0.4187
+[Open3D DEBUG] ICP Iteration #11: Fitness 1.0000, RMSE 0.3685
+[Open3D DEBUG] ICP Iteration #12: Fitness 1.0000, RMSE 0.3270
+[Open3D DEBUG] ICP Iteration #13: Fitness 1.0000, RMSE 0.2905
+[Open3D DEBUG] ICP Iteration #14: Fitness 1.0000, RMSE 0.2624
+[Open3D DEBUG] ICP Iteration #15: Fitness 1.0000, RMSE 0.2423
+[Open3D DEBUG] ICP Iteration #16: Fitness 1.0000, RMSE 0.2285
+[Open3D DEBUG] ICP Iteration #17: Fitness 1.0000, RMSE 0.2196
+[Open3D DEBUG] ICP Iteration #18: Fitness 1.0000, RMSE 0.2148
+[Open3D DEBUG] ICP Iteration #19: Fitness 1.0000, RMSE 0.2130
+[Open3D DEBUG] ICP Iteration #20: Fitness 1.0000, RMSE 0.2126
+[Open3D DEBUG] ICP Iteration #21: Fitness 1.0000, RMSE 0.2124
+Final RMSE: 0.212394
+Time (ms): 123.692
+Iterations: 0
+
+adelina@adelina-System-Product-Name:~/Desktop/3D_Data/3DP_lab_3/build$ ./registration ../data/bunny/source.ply ../data/bunny/target.ply o3d-p2plane
+[Descriptor] voxel_size: 1.99981  BB diagonal: 99.9907
+[Descriptor] RANSAC fitness: 1  inlier RMSE: 0.719072
+Initial RMSE: 0.291793
+Initial noisy RMSE: 4.6287
+ICP threshold: 4.99954
+Starting ICP
+[Open3D DEBUG] ICP Iteration #0: Fitness 0.7959, RMSE 2.7110
+[Open3D DEBUG] Residual : 7.17e+00 (# of elements : 26229)
+[Open3D DEBUG] ICP Iteration #1: Fitness 0.8662, RMSE 2.3620
+[Open3D DEBUG] Residual : 5.42e+00 (# of elements : 28547)
+[Open3D DEBUG] ICP Iteration #2: Fitness 0.8961, RMSE 2.0034
+[Open3D DEBUG] Residual : 3.87e+00 (# of elements : 29533)
+[Open3D DEBUG] ICP Iteration #3: Fitness 0.9258, RMSE 1.5116
+[Open3D DEBUG] Residual : 2.16e+00 (# of elements : 30512)
+[Open3D DEBUG] ICP Iteration #4: Fitness 0.9881, RMSE 1.2966
+[Open3D DEBUG] Residual : 1.56e+00 (# of elements : 32565)
+[Open3D DEBUG] ICP Iteration #5: Fitness 1.0000, RMSE 0.6067
+[Open3D DEBUG] Residual : 3.08e-01 (# of elements : 32957)
+[Open3D DEBUG] ICP Iteration #6: Fitness 1.0000, RMSE 0.2863
+[Open3D DEBUG] Residual : 3.39e-02 (# of elements : 32957)
+[Open3D DEBUG] ICP Iteration #7: Fitness 1.0000, RMSE 0.2125
+[Open3D DEBUG] Residual : 1.63e-02 (# of elements : 32957)
+[Open3D DEBUG] ICP Iteration #8: Fitness 1.0000, RMSE 0.2124
+[Open3D DEBUG] Residual : 1.63e-02 (# of elements : 32957)
+Final RMSE: 0.212398
+Time (ms): 85.3243
+Iterations: 0
+
+adelina@adelina-System-Product-Name:~/Desktop/3D_Data/3DP_lab_3/build$ ./registration ../data/bunny/source.ply ../data/bunny/target.ply o3d-gen
+[Descriptor] voxel_size: 1.99981  BB diagonal: 99.9907
+[Descriptor] RANSAC fitness: 1  inlier RMSE: 0.71844
+Initial RMSE: 0.339894
+Initial noisy RMSE: 3.44485
+ICP threshold: 4.99954
+Starting ICP
+[Open3D DEBUG] GeneralizedICP: Computing covariances from points.
+[Open3D DEBUG] GeneralizedICP: Computing covariances from points.
+[Open3D DEBUG] ICP Iteration #0: Fitness 0.8572, RMSE 2.6001
+[Open3D DEBUG] Residual : 1.87e+02 (# of elements : 28251)
+[Open3D DEBUG] ICP Iteration #1: Fitness 1.0000, RMSE 1.4403
+[Open3D DEBUG] Residual : 1.02e+02 (# of elements : 32957)
+[Open3D DEBUG] ICP Iteration #2: Fitness 1.0000, RMSE 0.5386
+[Open3D DEBUG] Residual : 4.07e+01 (# of elements : 32957)
+[Open3D DEBUG] ICP Iteration #3: Fitness 1.0000, RMSE 0.2165
+[Open3D DEBUG] Residual : 4.15e+00 (# of elements : 32957)
+[Open3D DEBUG] ICP Iteration #4: Fitness 1.0000, RMSE 0.2124
+[Open3D DEBUG] Residual : 3.97e+00 (# of elements : 32957)
+Final RMSE: 0.212415
+Time (ms): 109.425
+Iterations: 0
+______________________________________________________________________________________________________________________________________________________
+
+dragon 0-0
+
+adelina@adelina-System-Product-Name:~/Desktop/3D_Data/3DP_lab_3/build$ ./registration ../data/dragon/source.ply ../data/dragon/target.ply svd
+[Descriptor] voxel_size: 2.07408  BB diagonal: 103.704
+[Descriptor] RANSAC fitness: 1  inlier RMSE: 0.885489
+Initial RMSE: 0.521929
+Initial noisy RMSE: 0.521929
+ICP threshold: 1.04386
+Starting ICP
+ICP Inlier RMSE: 0.432921
+Final RMSE: 0.432921
+Time (ms): 230.746
+Iterations: 8
+
+adelina@adelina-System-Product-Name:~/Desktop/3D_Data/3DP_lab_3/build$ ./registration ../data/dragon/source.ply ../data/dragon/target.ply lm
+[Descriptor] voxel_size: 2.07408  BB diagonal: 103.704
+[Descriptor] RANSAC fitness: 1  inlier RMSE: 1.02266
+Initial RMSE: 0.718181
+Initial noisy RMSE: 0.718181
+ICP threshold: 1.43636
+Starting ICP
+ICP Inlier RMSE: 0.432946
+Final RMSE: 0.43294
+Time (ms): 11284.8
+Iterations: 15
+
+adelina@adelina-System-Product-Name:~/Desktop/3D_Data/3DP_lab_3/build$ ./registration ../data/dragon/source.ply ../data/dragon/target.ply o3d-p2point
+[Descriptor] voxel_size: 2.07408  BB diagonal: 103.704
+[Descriptor] RANSAC fitness: 1  inlier RMSE: 0.898236
+Initial RMSE: 0.543135
+Initial noisy RMSE: 0.543135
+ICP threshold: 1.08627
+Starting ICP
+[Open3D DEBUG] ICP Iteration #0: Fitness 0.9887, RMSE 0.5322
+[Open3D DEBUG] ICP Iteration #1: Fitness 0.9984, RMSE 0.4940
+[Open3D DEBUG] ICP Iteration #2: Fitness 1.0000, RMSE 0.4683
+[Open3D DEBUG] ICP Iteration #3: Fitness 1.0000, RMSE 0.4520
+[Open3D DEBUG] ICP Iteration #4: Fitness 1.0000, RMSE 0.4429
+[Open3D DEBUG] ICP Iteration #5: Fitness 1.0000, RMSE 0.4381
+[Open3D DEBUG] ICP Iteration #6: Fitness 1.0000, RMSE 0.4354
+[Open3D DEBUG] ICP Iteration #7: Fitness 1.0000, RMSE 0.4341
+[Open3D DEBUG] ICP Iteration #8: Fitness 1.0000, RMSE 0.4336
+[Open3D DEBUG] ICP Iteration #9: Fitness 1.0000, RMSE 0.4333
+[Open3D DEBUG] ICP Iteration #10: Fitness 1.0000, RMSE 0.4331
+[Open3D DEBUG] ICP Iteration #11: Fitness 1.0000, RMSE 0.4330
+Final RMSE: 0.432897
+Time (ms): 47.0269
+Iterations: 0
+
+adelina@adelina-System-Product-Name:~/Desktop/3D_Data/3DP_lab_3/build$ ./registration ../data/dragon/source.ply ../data/dragon/target.ply o3d-p2plane
+[Descriptor] voxel_size: 2.07408  BB diagonal: 103.704
+[Descriptor] RANSAC fitness: 1  inlier RMSE: 1.01891
+Initial RMSE: 0.696155
+Initial noisy RMSE: 0.696155
+ICP threshold: 1.39231
+Starting ICP
+[Open3D DEBUG] ICP Iteration #0: Fitness 0.9704, RMSE 0.6501
+[Open3D DEBUG] Residual : 3.20e-01 (# of elements : 11198)
+[Open3D DEBUG] ICP Iteration #1: Fitness 1.0000, RMSE 0.4586
+[Open3D DEBUG] Residual : 1.24e-01 (# of elements : 11539)
+[Open3D DEBUG] ICP Iteration #2: Fitness 1.0000, RMSE 0.4331
+[Open3D DEBUG] Residual : 1.04e-01 (# of elements : 11539)
+[Open3D DEBUG] ICP Iteration #3: Fitness 1.0000, RMSE 0.4329
+[Open3D DEBUG] Residual : 1.04e-01 (# of elements : 11539)
+Final RMSE: 0.432904
+Time (ms): 22.4918
+Iterations: 0
+
+adelina@adelina-System-Product-Name:~/Desktop/3D_Data/3DP_lab_3/build$ ./registration ../data/dragon/source.ply ../data/dragon/target.ply o3d-gen
+[Descriptor] voxel_size: 2.07408  BB diagonal: 103.704
+[Descriptor] RANSAC fitness: 1  inlier RMSE: 0.935304
+Initial RMSE: 0.601406
+Initial noisy RMSE: 0.601406
+ICP threshold: 1.20281
+Starting ICP
+[Open3D DEBUG] GeneralizedICP: Computing covariances from points.
+[Open3D DEBUG] GeneralizedICP: Computing covariances from points.
+[Open3D DEBUG] ICP Iteration #0: Fitness 0.9752, RMSE 0.5692
+[Open3D DEBUG] Residual : 2.66e+01 (# of elements : 11253)
+[Open3D DEBUG] ICP Iteration #1: Fitness 1.0000, RMSE 0.4361
+[Open3D DEBUG] Residual : 1.58e+01 (# of elements : 11539)
+[Open3D DEBUG] ICP Iteration #2: Fitness 1.0000, RMSE 0.4329
+[Open3D DEBUG] Residual : 1.56e+01 (# of elements : 11539)
+Final RMSE: 0.432881
+Time (ms): 52.2756
+Iterations: 0
+______________________________________________________________________________________________________________________________________________________
+
+dragon 10-5
+
+adelina@adelina-System-Product-Name:~/Desktop/3D_Data/3DP_lab_3/build$ ./registration ../data/dragon/source.ply ../data/dragon/target.ply svd
+[Descriptor] voxel_size: 2.07408  BB diagonal: 103.704
+[Descriptor] RANSAC fitness: 1  inlier RMSE: 0.919573
+Initial RMSE: 0.561647
+Initial noisy RMSE: 3.51278
+ICP threshold: 5.1852
+Starting ICP
+ICP Inlier RMSE: 0.432911
+Final RMSE: 0.432911
+Time (ms): 648.616
+Iterations: 20
+
+adelina@adelina-System-Product-Name:~/Desktop/3D_Data/3DP_lab_3/build$ ./registration ../data/dragon/source.ply ../data/dragon/target.ply lm
+[Descriptor] voxel_size: 2.07408  BB diagonal: 103.704
+[Descriptor] RANSAC fitness: 1  inlier RMSE: 0.939032
+Initial RMSE: 0.60903
+Initial noisy RMSE: 3.14345
+ICP threshold: 5.1852
+Starting ICP
+ICP Inlier RMSE: 0.432947
+Final RMSE: 0.432947
+Time (ms): 39389.2
+Iterations: 32
+
+adelina@adelina-System-Product-Name:~/Desktop/3D_Data/3DP_lab_3/build$ ./registration ../data/dragon/source.ply ../data/dragon/target.ply o3d-p2point
+[Descriptor] voxel_size: 2.07408  BB diagonal: 103.704
+[Descriptor] RANSAC fitness: 1  inlier RMSE: 1.02611
+Initial RMSE: 0.72854
+Initial noisy RMSE: 4.17487
+ICP threshold: 5.1852
+Starting ICP
+[Open3D DEBUG] ICP Iteration #0: Fitness 0.8250, RMSE 2.4938
+[Open3D DEBUG] ICP Iteration #1: Fitness 0.8462, RMSE 2.4473
+[Open3D DEBUG] ICP Iteration #2: Fitness 0.8681, RMSE 2.3991
+[Open3D DEBUG] ICP Iteration #3: Fitness 0.8843, RMSE 2.3149
+[Open3D DEBUG] ICP Iteration #4: Fitness 0.9053, RMSE 2.2498
+[Open3D DEBUG] ICP Iteration #5: Fitness 0.9307, RMSE 2.1769
+[Open3D DEBUG] ICP Iteration #6: Fitness 0.9583, RMSE 2.0632
+[Open3D DEBUG] ICP Iteration #7: Fitness 0.9805, RMSE 1.8790
+[Open3D DEBUG] ICP Iteration #8: Fitness 0.9958, RMSE 1.6452
+[Open3D DEBUG] ICP Iteration #9: Fitness 1.0000, RMSE 1.3516
+[Open3D DEBUG] ICP Iteration #10: Fitness 1.0000, RMSE 1.0891
+[Open3D DEBUG] ICP Iteration #11: Fitness 1.0000, RMSE 0.8830
+[Open3D DEBUG] ICP Iteration #12: Fitness 1.0000, RMSE 0.7271
+[Open3D DEBUG] ICP Iteration #13: Fitness 1.0000, RMSE 0.6133
+[Open3D DEBUG] ICP Iteration #14: Fitness 1.0000, RMSE 0.5353
+[Open3D DEBUG] ICP Iteration #15: Fitness 1.0000, RMSE 0.4885
+[Open3D DEBUG] ICP Iteration #16: Fitness 1.0000, RMSE 0.4614
+[Open3D DEBUG] ICP Iteration #17: Fitness 1.0000, RMSE 0.4472
+[Open3D DEBUG] ICP Iteration #18: Fitness 1.0000, RMSE 0.4397
+[Open3D DEBUG] ICP Iteration #19: Fitness 1.0000, RMSE 0.4361
+[Open3D DEBUG] ICP Iteration #20: Fitness 1.0000, RMSE 0.4343
+[Open3D DEBUG] ICP Iteration #21: Fitness 1.0000, RMSE 0.4335
+[Open3D DEBUG] ICP Iteration #22: Fitness 1.0000, RMSE 0.4331
+[Open3D DEBUG] ICP Iteration #23: Fitness 1.0000, RMSE 0.4330
+Final RMSE: 0.432895
+Time (ms): 81.8922
+Iterations: 0
+
+adelina@adelina-System-Product-Name:~/Desktop/3D_Data/3DP_lab_3/build$ ./registration ../data/dragon/source.ply ../data/dragon/target.ply o3d-p2plane
+[Descriptor] voxel_size: 2.07408  BB diagonal: 103.704
+[Descriptor] RANSAC fitness: 1  inlier RMSE: 0.966063
+Initial RMSE: 0.638208
+Initial noisy RMSE: 3.78764
+ICP threshold: 5.1852
+Starting ICP
+[Open3D DEBUG] ICP Iteration #0: Fitness 0.8320, RMSE 2.5230
+[Open3D DEBUG] Residual : 5.85e+00 (# of elements : 9600)
+[Open3D DEBUG] ICP Iteration #1: Fitness 0.9272, RMSE 2.3992
+[Open3D DEBUG] Residual : 5.24e+00 (# of elements : 10699)
+[Open3D DEBUG] ICP Iteration #2: Fitness 0.9846, RMSE 2.0591
+[Open3D DEBUG] Residual : 3.78e+00 (# of elements : 11361)
+[Open3D DEBUG] ICP Iteration #3: Fitness 0.9999, RMSE 1.3878
+[Open3D DEBUG] Residual : 1.66e+00 (# of elements : 11538)
+[Open3D DEBUG] ICP Iteration #4: Fitness 1.0000, RMSE 0.7471
+[Open3D DEBUG] Residual : 4.32e-01 (# of elements : 11539)
+[Open3D DEBUG] ICP Iteration #5: Fitness 1.0000, RMSE 0.4649
+[Open3D DEBUG] Residual : 1.28e-01 (# of elements : 11539)
+[Open3D DEBUG] ICP Iteration #6: Fitness 1.0000, RMSE 0.4335
+[Open3D DEBUG] Residual : 1.04e-01 (# of elements : 11539)
+[Open3D DEBUG] ICP Iteration #7: Fitness 1.0000, RMSE 0.4329
+[Open3D DEBUG] Residual : 1.04e-01 (# of elements : 11539)
+Final RMSE: 0.432901
+Time (ms): 42.3913
+Iterations: 0
+
+adelina@adelina-System-Product-Name:~/Desktop/3D_Data/3DP_lab_3/build$ ./registration ../data/dragon/source.ply ../data/dragon/target.ply o3d-gen
+[Descriptor] voxel_size: 2.07408  BB diagonal: 103.704
+[Descriptor] RANSAC fitness: 1  inlier RMSE: 1.11608
+Initial RMSE: 0.827646
+Initial noisy RMSE: 3.96448
+ICP threshold: 5.1852
+Starting ICP
+[Open3D DEBUG] GeneralizedICP: Computing covariances from points.
+[Open3D DEBUG] GeneralizedICP: Computing covariances from points.
+[Open3D DEBUG] ICP Iteration #0: Fitness 0.7941, RMSE 2.8050
+[Open3D DEBUG] Residual : 8.65e+01 (# of elements : 9163)
+[Open3D DEBUG] ICP Iteration #1: Fitness 0.9201, RMSE 2.4176
+[Open3D DEBUG] Residual : 9.63e+01 (# of elements : 10617)
+[Open3D DEBUG] ICP Iteration #2: Fitness 0.9744, RMSE 1.9223
+[Open3D DEBUG] Residual : 8.32e+01 (# of elements : 11244)
+[Open3D DEBUG] ICP Iteration #3: Fitness 0.9999, RMSE 1.2854
+[Open3D DEBUG] Residual : 7.65e+01 (# of elements : 11538)
+[Open3D DEBUG] ICP Iteration #4: Fitness 1.0000, RMSE 0.5839
+[Open3D DEBUG] Residual : 2.84e+01 (# of elements : 11539)
+[Open3D DEBUG] ICP Iteration #5: Fitness 1.0000, RMSE 0.4332
+[Open3D DEBUG] Residual : 1.57e+01 (# of elements : 11539)
+[Open3D DEBUG] ICP Iteration #6: Fitness 1.0000, RMSE 0.4329
+[Open3D DEBUG] Residual : 1.56e+01 (# of elements : 11539)
+Final RMSE: 0.432879
+Time (ms): 73.9152
+Iterations: 0
+______________________________________________________________________________________________________________________________________________________
+
+vase 0-0
+
+adelina@adelina-System-Product-Name:~/Desktop/3D_Data/3DP_lab_3/build$ ./registration ../data/vase/source.ply ../data/vase/target.ply svd
+[Descriptor] voxel_size: 2.4303  BB diagonal: 121.515
+[Descriptor] RANSAC fitness: 0.944843  inlier RMSE: 1.86956
+Initial RMSE: 1.45395
+Initial noisy RMSE: 1.45395
+ICP threshold: 2.90789
+Starting ICP
+ICP Inlier RMSE: 1.15591
+Final RMSE: 1.25999
+Time (ms): 1704.86
+Iterations: 19
+
+adelina@adelina-System-Product-Name:~/Desktop/3D_Data/3DP_lab_3/build$ ./registration ../data/vase/source.ply ../data/vase/target.ply lm
+[Descriptor] voxel_size: 2.4303  BB diagonal: 121.515
+[Descriptor] RANSAC fitness: 0.968937  inlier RMSE: 1.84218
+Initial RMSE: 1.35073
+Initial noisy RMSE: 1.35073
+ICP threshold: 2.70147
+Starting ICP
+ICP Inlier RMSE: 1.09664
+Final RMSE: 1.17002
+Time (ms): 68197.7
+Iterations: 21
+
+adelina@adelina-System-Product-Name:~/Desktop/3D_Data/3DP_lab_3/build$ ./registration ../data/vase/source.ply ../data/vase/target.ply o3d-p2point
+[Descriptor] voxel_size: 2.4303  BB diagonal: 121.515
+[Descriptor] RANSAC fitness: 0.928913  inlier RMSE: 1.92699
+Initial RMSE: 1.61184
+Initial noisy RMSE: 1.61184
+ICP threshold: 3.22368
+Starting ICP
+[Open3D DEBUG] ICP Iteration #0: Fitness 0.9584, RMSE 1.4438
+[Open3D DEBUG] ICP Iteration #1: Fitness 0.9759, RMSE 1.3364
+[Open3D DEBUG] ICP Iteration #2: Fitness 0.9824, RMSE 1.2712
+[Open3D DEBUG] ICP Iteration #3: Fitness 0.9850, RMSE 1.2342
+[Open3D DEBUG] ICP Iteration #4: Fitness 0.9868, RMSE 1.2161
+[Open3D DEBUG] ICP Iteration #5: Fitness 0.9876, RMSE 1.2040
+[Open3D DEBUG] ICP Iteration #6: Fitness 0.9882, RMSE 1.1967
+[Open3D DEBUG] ICP Iteration #7: Fitness 0.9886, RMSE 1.1916
+[Open3D DEBUG] ICP Iteration #8: Fitness 0.9888, RMSE 1.1879
+[Open3D DEBUG] ICP Iteration #9: Fitness 0.9890, RMSE 1.1852
+[Open3D DEBUG] ICP Iteration #10: Fitness 0.9893, RMSE 1.1837
+[Open3D DEBUG] ICP Iteration #11: Fitness 0.9892, RMSE 1.1818
+[Open3D DEBUG] ICP Iteration #12: Fitness 0.9894, RMSE 1.1809
+[Open3D DEBUG] ICP Iteration #13: Fitness 0.9894, RMSE 1.1800
+[Open3D DEBUG] ICP Iteration #14: Fitness 0.9895, RMSE 1.1793
+[Open3D DEBUG] ICP Iteration #15: Fitness 0.9895, RMSE 1.1789
+[Open3D DEBUG] ICP Iteration #16: Fitness 0.9897, RMSE 1.1792
+[Open3D DEBUG] ICP Iteration #17: Fitness 0.9898, RMSE 1.1791
+[Open3D DEBUG] ICP Iteration #18: Fitness 0.9899, RMSE 1.1791
+[Open3D DEBUG] ICP Iteration #19: Fitness 0.9899, RMSE 1.1788
+[Open3D DEBUG] ICP Iteration #20: Fitness 0.9899, RMSE 1.1785
+[Open3D DEBUG] ICP Iteration #21: Fitness 0.9899, RMSE 1.1783
+[Open3D DEBUG] ICP Iteration #22: Fitness 0.9900, RMSE 1.1783
+[Open3D DEBUG] ICP Iteration #23: Fitness 0.9900, RMSE 1.1782
+[Open3D DEBUG] ICP Iteration #24: Fitness 0.9900, RMSE 1.1781
+[Open3D DEBUG] ICP Iteration #25: Fitness 0.9900, RMSE 1.1780
+[Open3D DEBUG] ICP Iteration #26: Fitness 0.9900, RMSE 1.1777
+[Open3D DEBUG] ICP Iteration #27: Fitness 0.9900, RMSE 1.1777
+[Open3D DEBUG] ICP Iteration #28: Fitness 0.9900, RMSE 1.1776
+Final RMSE: 1.23029
+Time (ms): 179.3
+Iterations: 0
+
+adelina@adelina-System-Product-Name:~/Desktop/3D_Data/3DP_lab_3/build$ ./registration ../data/vase/source.ply ../data/vase/target.ply o3d-p2plane
+[Descriptor] voxel_size: 2.4303  BB diagonal: 121.515
+[Descriptor] RANSAC fitness: 0.948029  inlier RMSE: 1.87459
+Initial RMSE: 1.4978
+Initial noisy RMSE: 1.4978
+ICP threshold: 2.9956
+Starting ICP
+[Open3D DEBUG] ICP Iteration #0: Fitness 0.9553, RMSE 1.3156
+[Open3D DEBUG] Residual : 1.63e+00 (# of elements : 34411)
+[Open3D DEBUG] ICP Iteration #1: Fitness 0.9859, RMSE 1.1760
+[Open3D DEBUG] Residual : 1.29e+00 (# of elements : 35513)
+[Open3D DEBUG] ICP Iteration #2: Fitness 0.9903, RMSE 1.1366
+[Open3D DEBUG] Residual : 1.21e+00 (# of elements : 35673)
+[Open3D DEBUG] ICP Iteration #3: Fitness 0.9902, RMSE 1.1262
+[Open3D DEBUG] Residual : 1.18e+00 (# of elements : 35670)
+[Open3D DEBUG] ICP Iteration #4: Fitness 0.9903, RMSE 1.1252
+[Open3D DEBUG] Residual : 1.18e+00 (# of elements : 35674)
+[Open3D DEBUG] ICP Iteration #5: Fitness 0.9904, RMSE 1.1252
+[Open3D DEBUG] Residual : 1.18e+00 (# of elements : 35675)
+[Open3D DEBUG] ICP Iteration #6: Fitness 0.9904, RMSE 1.1253
+[Open3D DEBUG] Residual : 1.18e+00 (# of elements : 35676)
+[Open3D DEBUG] ICP Iteration #7: Fitness 0.9904, RMSE 1.1252
+[Open3D DEBUG] Residual : 1.18e+00 (# of elements : 35675)
+[Open3D DEBUG] ICP Iteration #8: Fitness 0.9904, RMSE 1.1253
+[Open3D DEBUG] Residual : 1.18e+00 (# of elements : 35676)
+[Open3D DEBUG] ICP Iteration #9: Fitness 0.9904, RMSE 1.1252
+[Open3D DEBUG] Residual : 1.18e+00 (# of elements : 35675)
+Final RMSE: 1.16824
+Time (ms): 76.9868
+Iterations: 0
+
+adelina@adelina-System-Product-Name:~/Desktop/3D_Data/3DP_lab_3/build$ ./registration ../data/vase/source.ply ../data/vase/target.ply o3d-gen
+[Descriptor] voxel_size: 2.4303  BB diagonal: 121.515
+[Descriptor] RANSAC fitness: 0.970131  inlier RMSE: 1.83887
+Initial RMSE: 1.3506
+Initial noisy RMSE: 1.3506
+ICP threshold: 2.7012
+Starting ICP
+[Open3D DEBUG] GeneralizedICP: Computing covariances from points.
+[Open3D DEBUG] GeneralizedICP: Computing covariances from points.
+[Open3D DEBUG] ICP Iteration #0: Fitness 0.9571, RMSE 1.2035
+[Open3D DEBUG] Residual : 2.67e+01 (# of elements : 34478)
+[Open3D DEBUG] ICP Iteration #1: Fitness 0.9782, RMSE 1.1179
+[Open3D DEBUG] Residual : 2.59e+01 (# of elements : 35237)
+[Open3D DEBUG] ICP Iteration #2: Fitness 0.9798, RMSE 1.1012
+[Open3D DEBUG] Residual : 2.53e+01 (# of elements : 35295)
+[Open3D DEBUG] ICP Iteration #3: Fitness 0.9801, RMSE 1.0995
+[Open3D DEBUG] Residual : 2.53e+01 (# of elements : 35304)
+[Open3D DEBUG] ICP Iteration #4: Fitness 0.9800, RMSE 1.0992
+[Open3D DEBUG] Residual : 2.53e+01 (# of elements : 35303)
+[Open3D DEBUG] ICP Iteration #5: Fitness 0.9801, RMSE 1.0992
+[Open3D DEBUG] Residual : 2.53e+01 (# of elements : 35305)
+[Open3D DEBUG] ICP Iteration #6: Fitness 0.9802, RMSE 1.0992
+[Open3D DEBUG] Residual : 2.53e+01 (# of elements : 35307)
+[Open3D DEBUG] ICP Iteration #7: Fitness 0.9802, RMSE 1.0992
+[Open3D DEBUG] Residual : 2.53e+01 (# of elements : 35309)
+[Open3D DEBUG] ICP Iteration #8: Fitness 0.9802, RMSE 1.0991
+[Open3D DEBUG] Residual : 2.53e+01 (# of elements : 35310)
+[Open3D DEBUG] ICP Iteration #9: Fitness 0.9802, RMSE 1.0986
+[Open3D DEBUG] Residual : 2.52e+01 (# of elements : 35307)
+[Open3D DEBUG] ICP Iteration #10: Fitness 0.9802, RMSE 1.0985
+[Open3D DEBUG] Residual : 2.53e+01 (# of elements : 35309)
+[Open3D DEBUG] ICP Iteration #11: Fitness 0.9802, RMSE 1.0983
+[Open3D DEBUG] Residual : 2.52e+01 (# of elements : 35308)
+[Open3D DEBUG] ICP Iteration #12: Fitness 0.9802, RMSE 1.0981
+[Open3D DEBUG] Residual : 2.53e+01 (# of elements : 35308)
+[Open3D DEBUG] ICP Iteration #13: Fitness 0.9801, RMSE 1.0979
+[Open3D DEBUG] Residual : 2.52e+01 (# of elements : 35305)
+[Open3D DEBUG] ICP Iteration #14: Fitness 0.9801, RMSE 1.0977
+[Open3D DEBUG] Residual : 2.52e+01 (# of elements : 35304)
+[Open3D DEBUG] ICP Iteration #15: Fitness 0.9801, RMSE 1.0978
+[Open3D DEBUG] Residual : 2.52e+01 (# of elements : 35306)
+[Open3D DEBUG] ICP Iteration #16: Fitness 0.9802, RMSE 1.0979
+[Open3D DEBUG] Residual : 2.52e+01 (# of elements : 35310)
+[Open3D DEBUG] ICP Iteration #17: Fitness 0.9803, RMSE 1.0977
+[Open3D DEBUG] Residual : 2.53e+01 (# of elements : 35311)
+[Open3D DEBUG] ICP Iteration #18: Fitness 0.9803, RMSE 1.0976
+[Open3D DEBUG] Residual : 2.53e+01 (# of elements : 35311)
+[Open3D DEBUG] ICP Iteration #19: Fitness 0.9803, RMSE 1.0977
+[Open3D DEBUG] Residual : 2.53e+01 (# of elements : 35313)
+[Open3D DEBUG] ICP Iteration #20: Fitness 0.9805, RMSE 1.0980
+[Open3D DEBUG] Residual : 2.53e+01 (# of elements : 35318)
+Final RMSE: 1.1718
+Time (ms): 287.973
+Iterations: 0
+______________________________________________________________________________________________________________________________________________________
+
+vase 10-5
+
+adelina@adelina-System-Product-Name:~/Desktop/3D_Data/3DP_lab_3/build$ ./registration ../data/vase/source.ply ../data/vase/target.ply svd
+[Descriptor] voxel_size: 2.4303  BB diagonal: 121.515
+[Descriptor] RANSAC fitness: 0.920749  inlier RMSE: 1.91336
+Initial RMSE: 1.65089
+Initial noisy RMSE: 3.59085
+ICP threshold: 6.07576
+Starting ICP
+ICP Inlier RMSE: 1.38761
+Final RMSE: 1.41646
+Time (ms): 2118.97
+Iterations: 22
+
+adelina@adelina-System-Product-Name:~/Desktop/3D_Data/3DP_lab_3/build$ ./registration ../data/vase/source.ply ../data/vase/target.ply lm
+[Descriptor] voxel_size: 2.4303  BB diagonal: 121.515
+[Descriptor] RANSAC fitness: 0.889685  inlier RMSE: 1.97258
+Initial RMSE: 1.87506
+Initial noisy RMSE: 3.31973
+ICP threshold: 6.07576
+Starting ICP
+ICP Inlier RMSE: 1.23315
+Final RMSE: 1.23315
+Time (ms): 204935
+Iterations: 64
+
+adelina@adelina-System-Product-Name:~/Desktop/3D_Data/3DP_lab_3/build$ ./registration ../data/vase/source.ply ../data/vase/target.ply o3d-p2point
+[Descriptor] voxel_size: 2.4303  BB diagonal: 121.515
+[Descriptor] RANSAC fitness: 0.950816  inlier RMSE: 1.89183
+Initial RMSE: 1.50603
+Initial noisy RMSE: 3.53849
+ICP threshold: 6.07576
+Starting ICP
+[Open3D DEBUG] ICP Iteration #0: Fitness 0.9280, RMSE 2.5810
+[Open3D DEBUG] ICP Iteration #1: Fitness 0.9481, RMSE 2.3770
+[Open3D DEBUG] ICP Iteration #2: Fitness 0.9593, RMSE 2.2115
+[Open3D DEBUG] ICP Iteration #3: Fitness 0.9671, RMSE 2.0850
+[Open3D DEBUG] ICP Iteration #4: Fitness 0.9747, RMSE 1.9880
+[Open3D DEBUG] ICP Iteration #5: Fitness 0.9811, RMSE 1.8989
+[Open3D DEBUG] ICP Iteration #6: Fitness 0.9873, RMSE 1.8174
+[Open3D DEBUG] ICP Iteration #7: Fitness 0.9932, RMSE 1.7414
+[Open3D DEBUG] ICP Iteration #8: Fitness 0.9971, RMSE 1.6564
+[Open3D DEBUG] ICP Iteration #9: Fitness 0.9989, RMSE 1.5652
+[Open3D DEBUG] ICP Iteration #10: Fitness 0.9996, RMSE 1.4807
+[Open3D DEBUG] ICP Iteration #11: Fitness 0.9999, RMSE 1.4104
+[Open3D DEBUG] ICP Iteration #12: Fitness 1.0000, RMSE 1.3556
+[Open3D DEBUG] ICP Iteration #13: Fitness 1.0000, RMSE 1.3121
+[Open3D DEBUG] ICP Iteration #14: Fitness 1.0000, RMSE 1.2785
+[Open3D DEBUG] ICP Iteration #15: Fitness 1.0000, RMSE 1.2525
+[Open3D DEBUG] ICP Iteration #16: Fitness 1.0000, RMSE 1.2328
+[Open3D DEBUG] ICP Iteration #17: Fitness 1.0000, RMSE 1.2181
+[Open3D DEBUG] ICP Iteration #18: Fitness 1.0000, RMSE 1.2069
+[Open3D DEBUG] ICP Iteration #19: Fitness 1.0000, RMSE 1.1987
+[Open3D DEBUG] ICP Iteration #20: Fitness 1.0000, RMSE 1.1927
+[Open3D DEBUG] ICP Iteration #21: Fitness 1.0000, RMSE 1.1883
+[Open3D DEBUG] ICP Iteration #22: Fitness 1.0000, RMSE 1.1849
+[Open3D DEBUG] ICP Iteration #23: Fitness 1.0000, RMSE 1.1824
+[Open3D DEBUG] ICP Iteration #24: Fitness 1.0000, RMSE 1.1805
+[Open3D DEBUG] ICP Iteration #25: Fitness 1.0000, RMSE 1.1791
+[Open3D DEBUG] ICP Iteration #26: Fitness 1.0000, RMSE 1.1781
+[Open3D DEBUG] ICP Iteration #27: Fitness 1.0000, RMSE 1.1773
+[Open3D DEBUG] ICP Iteration #28: Fitness 1.0000, RMSE 1.1767
+[Open3D DEBUG] ICP Iteration #29: Fitness 1.0000, RMSE 1.1763
+[Open3D DEBUG] ICP Iteration #30: Fitness 1.0000, RMSE 1.1760
+[Open3D DEBUG] ICP Iteration #31: Fitness 1.0000, RMSE 1.1758
+[Open3D DEBUG] ICP Iteration #32: Fitness 1.0000, RMSE 1.1756
+[Open3D DEBUG] ICP Iteration #33: Fitness 1.0000, RMSE 1.1754
+[Open3D DEBUG] ICP Iteration #34: Fitness 1.0000, RMSE 1.1753
+Final RMSE: 1.17523
+Time (ms): 227.943
+Iterations: 0
+
+adelina@adelina-System-Product-Name:~/Desktop/3D_Data/3DP_lab_3/build$ ./registration ../data/vase/source.ply ../data/vase/target.ply o3d-p2plane
+[Descriptor] voxel_size: 2.4303  BB diagonal: 121.515
+[Descriptor] RANSAC fitness: 0.907607  inlier RMSE: 1.95347
+Initial RMSE: 1.82909
+Initial noisy RMSE: 2.4286
+ICP threshold: 4.85719
+Starting ICP
+[Open3D DEBUG] ICP Iteration #0: Fitness 0.9679, RMSE 2.2582
+[Open3D DEBUG] Residual : 4.86e+00 (# of elements : 34865)
+[Open3D DEBUG] ICP Iteration #1: Fitness 0.9999, RMSE 1.2594
+[Open3D DEBUG] Residual : 1.47e+00 (# of elements : 36018)
+[Open3D DEBUG] ICP Iteration #2: Fitness 1.0000, RMSE 1.1742
+[Open3D DEBUG] Residual : 1.29e+00 (# of elements : 36021)
+[Open3D DEBUG] ICP Iteration #3: Fitness 1.0000, RMSE 1.1690
+[Open3D DEBUG] Residual : 1.28e+00 (# of elements : 36021)
+[Open3D DEBUG] ICP Iteration #4: Fitness 1.0000, RMSE 1.1680
+[Open3D DEBUG] Residual : 1.28e+00 (# of elements : 36021)
+Final RMSE: 1.16824
+Time (ms): 33.0095
+Iterations: 0
+
+adelina@adelina-System-Product-Name:~/Desktop/3D_Data/3DP_lab_3/build$ ./registration ../data/vase/source.ply ../data/vase/target.ply o3d-gen
+[Descriptor] voxel_size: 2.4303  BB diagonal: 121.515
+[Descriptor] RANSAC fitness: 0.934687  inlier RMSE: 1.88544
+Initial RMSE: 1.54513
+Initial noisy RMSE: 3.64573
+ICP threshold: 6.07576
+Starting ICP
+[Open3D DEBUG] GeneralizedICP: Computing covariances from points.
+[Open3D DEBUG] GeneralizedICP: Computing covariances from points.
+[Open3D DEBUG] ICP Iteration #0: Fitness 0.9328, RMSE 3.2981
+[Open3D DEBUG] Residual : 1.60e+02 (# of elements : 33601)
+[Open3D DEBUG] ICP Iteration #1: Fitness 0.9999, RMSE 1.5079
+[Open3D DEBUG] Residual : 4.39e+01 (# of elements : 36019)
+[Open3D DEBUG] ICP Iteration #2: Fitness 1.0000, RMSE 1.2714
+[Open3D DEBUG] Residual : 3.34e+01 (# of elements : 36021)
+[Open3D DEBUG] ICP Iteration #3: Fitness 1.0000, RMSE 1.2509
+[Open3D DEBUG] Residual : 3.29e+01 (# of elements : 36022)
+[Open3D DEBUG] ICP Iteration #4: Fitness 1.0000, RMSE 1.2468
+[Open3D DEBUG] Residual : 3.27e+01 (# of elements : 36022)
+[Open3D DEBUG] ICP Iteration #5: Fitness 1.0000, RMSE 1.2447
+[Open3D DEBUG] Residual : 3.28e+01 (# of elements : 36022)
+[Open3D DEBUG] ICP Iteration #6: Fitness 1.0000, RMSE 1.2427
+[Open3D DEBUG] Residual : 3.29e+01 (# of elements : 36022)
+[Open3D DEBUG] ICP Iteration #7: Fitness 1.0000, RMSE 1.2404
+[Open3D DEBUG] Residual : 3.31e+01 (# of elements : 36022)
+[Open3D DEBUG] ICP Iteration #8: Fitness 1.0000, RMSE 1.2383
+[Open3D DEBUG] Residual : 3.29e+01 (# of elements : 36022)
+[Open3D DEBUG] ICP Iteration #9: Fitness 1.0000, RMSE 1.2365
+[Open3D DEBUG] Residual : 3.30e+01 (# of elements : 36022)
+[Open3D DEBUG] ICP Iteration #10: Fitness 1.0000, RMSE 1.2346
+[Open3D DEBUG] Residual : 3.27e+01 (# of elements : 36022)
+[Open3D DEBUG] ICP Iteration #11: Fitness 1.0000, RMSE 1.2326
+[Open3D DEBUG] Residual : 3.27e+01 (# of elements : 36022)
+[Open3D DEBUG] ICP Iteration #12: Fitness 1.0000, RMSE 1.2306
+[Open3D DEBUG] Residual : 3.28e+01 (# of elements : 36022)
+[Open3D DEBUG] ICP Iteration #13: Fitness 1.0000, RMSE 1.2289
+[Open3D DEBUG] Residual : 3.31e+01 (# of elements : 36022)
+[Open3D DEBUG] ICP Iteration #14: Fitness 1.0000, RMSE 1.2274
+[Open3D DEBUG] Residual : 3.32e+01 (# of elements : 36022)
+[Open3D DEBUG] ICP Iteration #15: Fitness 1.0000, RMSE 1.2257
+[Open3D DEBUG] Residual : 3.32e+01 (# of elements : 36022)
+[Open3D DEBUG] ICP Iteration #16: Fitness 1.0000, RMSE 1.2243
+[Open3D DEBUG] Residual : 3.31e+01 (# of elements : 36022)
+[Open3D DEBUG] ICP Iteration #17: Fitness 1.0000, RMSE 1.2233
+[Open3D DEBUG] Residual : 3.31e+01 (# of elements : 36022)
+[Open3D DEBUG] ICP Iteration #18: Fitness 1.0000, RMSE 1.2219
+[Open3D DEBUG] Residual : 3.31e+01 (# of elements : 36022)
+[Open3D DEBUG] ICP Iteration #19: Fitness 1.0000, RMSE 1.2205
+[Open3D DEBUG] Residual : 3.30e+01 (# of elements : 36022)
+[Open3D DEBUG] ICP Iteration #20: Fitness 1.0000, RMSE 1.2191
+[Open3D DEBUG] Residual : 3.33e+01 (# of elements : 36022)
+[Open3D DEBUG] ICP Iteration #21: Fitness 1.0000, RMSE 1.2182
+[Open3D DEBUG] Residual : 3.33e+01 (# of elements : 36022)
+[Open3D DEBUG] ICP Iteration #22: Fitness 1.0000, RMSE 1.2172
+[Open3D DEBUG] Residual : 3.34e+01 (# of elements : 36022)
+[Open3D DEBUG] ICP Iteration #23: Fitness 1.0000, RMSE 1.2158
+[Open3D DEBUG] Residual : 3.33e+01 (# of elements : 36022)
+[Open3D DEBUG] ICP Iteration #24: Fitness 1.0000, RMSE 1.2145
+[Open3D DEBUG] Residual : 3.33e+01 (# of elements : 36022)
+[Open3D DEBUG] ICP Iteration #25: Fitness 1.0000, RMSE 1.2134
+[Open3D DEBUG] Residual : 3.34e+01 (# of elements : 36022)
+[Open3D DEBUG] ICP Iteration #26: Fitness 1.0000, RMSE 1.2123
+[Open3D DEBUG] Residual : 3.34e+01 (# of elements : 36022)
+[Open3D DEBUG] ICP Iteration #27: Fitness 1.0000, RMSE 1.2112
+[Open3D DEBUG] Residual : 3.35e+01 (# of elements : 36022)
+[Open3D DEBUG] ICP Iteration #28: Fitness 1.0000, RMSE 1.2098
+[Open3D DEBUG] Residual : 3.34e+01 (# of elements : 36022)
+[Open3D DEBUG] ICP Iteration #29: Fitness 1.0000, RMSE 1.2087
+[Open3D DEBUG] Residual : 3.33e+01 (# of elements : 36022)
+[Open3D DEBUG] ICP Iteration #30: Fitness 1.0000, RMSE 1.2074
+[Open3D DEBUG] Residual : 3.31e+01 (# of elements : 36022)
+[Open3D DEBUG] ICP Iteration #31: Fitness 1.0000, RMSE 1.2062
+[Open3D DEBUG] Residual : 3.33e+01 (# of elements : 36022)
+[Open3D DEBUG] ICP Iteration #32: Fitness 1.0000, RMSE 1.2051
+[Open3D DEBUG] Residual : 3.32e+01 (# of elements : 36022)
+[Open3D DEBUG] ICP Iteration #33: Fitness 1.0000, RMSE 1.2039
+[Open3D DEBUG] Residual : 3.32e+01 (# of elements : 36022)
+[Open3D DEBUG] ICP Iteration #34: Fitness 1.0000, RMSE 1.2028
+[Open3D DEBUG] Residual : 3.31e+01 (# of elements : 36022)
+[Open3D DEBUG] ICP Iteration #35: Fitness 1.0000, RMSE 1.2016
+[Open3D DEBUG] Residual : 3.31e+01 (# of elements : 36022)
+[Open3D DEBUG] ICP Iteration #36: Fitness 1.0000, RMSE 1.2006
+[Open3D DEBUG] Residual : 3.29e+01 (# of elements : 36022)
+[Open3D DEBUG] ICP Iteration #37: Fitness 1.0000, RMSE 1.1994
+[Open3D DEBUG] Residual : 3.28e+01 (# of elements : 36022)
+[Open3D DEBUG] ICP Iteration #38: Fitness 1.0000, RMSE 1.1984
+[Open3D DEBUG] Residual : 3.29e+01 (# of elements : 36022)
+[Open3D DEBUG] ICP Iteration #39: Fitness 1.0000, RMSE 1.1974
+[Open3D DEBUG] Residual : 3.29e+01 (# of elements : 36022)
+[Open3D DEBUG] ICP Iteration #40: Fitness 1.0000, RMSE 1.1964
+[Open3D DEBUG] Residual : 3.27e+01 (# of elements : 36022)
+[Open3D DEBUG] ICP Iteration #41: Fitness 1.0000, RMSE 1.1956
+[Open3D DEBUG] Residual : 3.27e+01 (# of elements : 36022)
+[Open3D DEBUG] ICP Iteration #42: Fitness 1.0000, RMSE 1.1946
+[Open3D DEBUG] Residual : 3.28e+01 (# of elements : 36022)
+[Open3D DEBUG] ICP Iteration #43: Fitness 1.0000, RMSE 1.1936
+[Open3D DEBUG] Residual : 3.26e+01 (# of elements : 36022)
+[Open3D DEBUG] ICP Iteration #44: Fitness 1.0000, RMSE 1.1926
+[Open3D DEBUG] Residual : 3.27e+01 (# of elements : 36022)
+[Open3D DEBUG] ICP Iteration #45: Fitness 1.0000, RMSE 1.1916
+[Open3D DEBUG] Residual : 3.27e+01 (# of elements : 36022)
+[Open3D DEBUG] ICP Iteration #46: Fitness 1.0000, RMSE 1.1906
+[Open3D DEBUG] Residual : 3.26e+01 (# of elements : 36022)
+[Open3D DEBUG] ICP Iteration #47: Fitness 1.0000, RMSE 1.1897
+[Open3D DEBUG] Residual : 3.26e+01 (# of elements : 36022)
+[Open3D DEBUG] ICP Iteration #48: Fitness 1.0000, RMSE 1.1887
+[Open3D DEBUG] Residual : 3.24e+01 (# of elements : 36022)
+[Open3D DEBUG] ICP Iteration #49: Fitness 1.0000, RMSE 1.1876
+[Open3D DEBUG] Residual : 3.24e+01 (# of elements : 36022)
+[Open3D DEBUG] ICP Iteration #50: Fitness 1.0000, RMSE 1.1867
+[Open3D DEBUG] Residual : 3.24e+01 (# of elements : 36022)
+[Open3D DEBUG] ICP Iteration #51: Fitness 1.0000, RMSE 1.1858
+[Open3D DEBUG] Residual : 3.25e+01 (# of elements : 36022)
+[Open3D DEBUG] ICP Iteration #52: Fitness 1.0000, RMSE 1.1849
+[Open3D DEBUG] Residual : 3.25e+01 (# of elements : 36022)
+[Open3D DEBUG] ICP Iteration #53: Fitness 1.0000, RMSE 1.1838
+[Open3D DEBUG] Residual : 3.23e+01 (# of elements : 36022)
+[Open3D DEBUG] ICP Iteration #54: Fitness 1.0000, RMSE 1.1829
+[Open3D DEBUG] Residual : 3.20e+01 (# of elements : 36022)
+[Open3D DEBUG] ICP Iteration #55: Fitness 1.0000, RMSE 1.1821
+[Open3D DEBUG] Residual : 3.21e+01 (# of elements : 36022)
+[Open3D DEBUG] ICP Iteration #56: Fitness 1.0000, RMSE 1.1812
+[Open3D DEBUG] Residual : 3.22e+01 (# of elements : 36022)
+[Open3D DEBUG] ICP Iteration #57: Fitness 1.0000, RMSE 1.1804
+[Open3D DEBUG] Residual : 3.21e+01 (# of elements : 36022)
+[Open3D DEBUG] ICP Iteration #58: Fitness 1.0000, RMSE 1.1796
+[Open3D DEBUG] Residual : 3.20e+01 (# of elements : 36022)
+[Open3D DEBUG] ICP Iteration #59: Fitness 1.0000, RMSE 1.1790
+[Open3D DEBUG] Residual : 3.19e+01 (# of elements : 36022)
+[Open3D DEBUG] ICP Iteration #60: Fitness 1.0000, RMSE 1.1783
+[Open3D DEBUG] Residual : 3.20e+01 (# of elements : 36022)
+[Open3D DEBUG] ICP Iteration #61: Fitness 1.0000, RMSE 1.1776
+[Open3D DEBUG] Residual : 3.19e+01 (# of elements : 36022)
+[Open3D DEBUG] ICP Iteration #62: Fitness 1.0000, RMSE 1.1770
+[Open3D DEBUG] Residual : 3.20e+01 (# of elements : 36022)
+[Open3D DEBUG] ICP Iteration #63: Fitness 1.0000, RMSE 1.1765
+[Open3D DEBUG] Residual : 3.22e+01 (# of elements : 36022)
+[Open3D DEBUG] ICP Iteration #64: Fitness 1.0000, RMSE 1.1760
+[Open3D DEBUG] Residual : 3.21e+01 (# of elements : 36022)
+[Open3D DEBUG] ICP Iteration #65: Fitness 1.0000, RMSE 1.1757
+[Open3D DEBUG] Residual : 3.22e+01 (# of elements : 36022)
+[Open3D DEBUG] ICP Iteration #66: Fitness 1.0000, RMSE 1.1752
+[Open3D DEBUG] Residual : 3.22e+01 (# of elements : 36022)
+[Open3D DEBUG] ICP Iteration #67: Fitness 1.0000, RMSE 1.1748
+[Open3D DEBUG] Residual : 3.22e+01 (# of elements : 36022)
+[Open3D DEBUG] ICP Iteration #68: Fitness 1.0000, RMSE 1.1743
+[Open3D DEBUG] Residual : 3.22e+01 (# of elements : 36022)
+[Open3D DEBUG] ICP Iteration #69: Fitness 1.0000, RMSE 1.1739
+[Open3D DEBUG] Residual : 3.22e+01 (# of elements : 36022)
+[Open3D DEBUG] ICP Iteration #70: Fitness 1.0000, RMSE 1.1736
+[Open3D DEBUG] Residual : 3.22e+01 (# of elements : 36022)
+[Open3D DEBUG] ICP Iteration #71: Fitness 1.0000, RMSE 1.1734
+[Open3D DEBUG] Residual : 3.22e+01 (# of elements : 36022)
+[Open3D DEBUG] ICP Iteration #72: Fitness 1.0000, RMSE 1.1732
+[Open3D DEBUG] Residual : 3.23e+01 (# of elements : 36022)
+[Open3D DEBUG] ICP Iteration #73: Fitness 1.0000, RMSE 1.1728
+[Open3D DEBUG] Residual : 3.22e+01 (# of elements : 36022)
+[Open3D DEBUG] ICP Iteration #74: Fitness 1.0000, RMSE 1.1726
+[Open3D DEBUG] Residual : 3.22e+01 (# of elements : 36022)
+[Open3D DEBUG] ICP Iteration #75: Fitness 1.0000, RMSE 1.1724
+[Open3D DEBUG] Residual : 3.22e+01 (# of elements : 36022)
+[Open3D DEBUG] ICP Iteration #76: Fitness 1.0000, RMSE 1.1722
+[Open3D DEBUG] Residual : 3.22e+01 (# of elements : 36022)
+[Open3D DEBUG] ICP Iteration #77: Fitness 1.0000, RMSE 1.1720
+[Open3D DEBUG] Residual : 3.22e+01 (# of elements : 36022)
+[Open3D DEBUG] ICP Iteration #78: Fitness 1.0000, RMSE 1.1717
+[Open3D DEBUG] Residual : 3.23e+01 (# of elements : 36022)
+[Open3D DEBUG] ICP Iteration #79: Fitness 1.0000, RMSE 1.1715
+[Open3D DEBUG] Residual : 3.23e+01 (# of elements : 36022)
+[Open3D DEBUG] ICP Iteration #80: Fitness 1.0000, RMSE 1.1714
+[Open3D DEBUG] Residual : 3.23e+01 (# of elements : 36022)
+Final RMSE: 1.1714
+Time (ms): 986.158
+Iterations: 0

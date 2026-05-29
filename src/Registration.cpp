@@ -134,7 +134,7 @@ ICPResult Registration::execute_icp_registration(double threshold, int max_itera
             threshold,
             transformation_,
             *transformation_estimation,
-            open3d::pipelines::registration::ICPConvergenceCriteria(relative_rmse = relative_rmse, max_iteration = max_iteration));
+            open3d::pipelines::registration::ICPConvergenceCriteria(1e-6, relative_rmse, max_iteration));
         transformation_ = reg_p2p.transformation_;
         auto end = std::chrono::steady_clock::now();
         auto time_ms = std::chrono::duration<double, std::milli>(end - start).count();

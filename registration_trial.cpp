@@ -20,7 +20,7 @@ int main(int argc, char *argv[]) {
 
     if (mode != "all") {
         // uncomment to test with a single noise level
-        Eigen::Matrix4d noisy_transformation = registration.get_noisy_transformation(10.0, 5.0);
+        Eigen::Matrix4d noisy_transformation = registration.get_noisy_transformation(0.0, 0.0);
         registration.set_transformation(noisy_transformation);
         registration.draw_registration_result(); // (3) Initial Noisy state
         std::cout << "Initial noisy RMSE: " << registration.compute_rmse() << std::endl;
