@@ -27,7 +27,8 @@ The pipeline:
 | `Registration.h` / `.cpp` | Core class: global (descriptor-based) registration, noisy-transform generation, SVD and LM ICP, RMSE computation, visualization and I/O. |
 | `registration_trial.cpp` | CLI entry point: loads the two clouds, runs global registration, then ICP in the requested mode. |
 | `TERMINAL_RESULTS.txt` | Logged runs (RMSE, timing, iterations) on the test datasets for both ICP variants. |
-| `Lab3 - Full Cloud Registration.pdf` | Assignment write-up / report. |
+| `Lab3 - Full Cloud Registration.pdf` | Assignment specification. |
+| `Lab3_Report.pdf` | Report: method, noise-sensitivity analysis, SVD vs. LM comparison and results. |
 
 ---
 
